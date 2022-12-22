@@ -17,11 +17,10 @@ export async function signInRequest(data: signInRequestData) {
 }
 
 export async function recoverUserInformation() {
-  return {
-    token: uuid(),
-    user: {
-      name: 'John Doe',
-      email: 'john Doe',
-    },
-  };
+  try {
+    const response = await API.get('/sessions');
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
 }

@@ -1,6 +1,9 @@
+import Image from 'next/image';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../context/AuthContext';
+import login_illustration from '../assets/image/login_illustration.svg';
+import { AiFillLock } from 'react-icons/ai';
 
 export default function Home() {
   const { register, handleSubmit } = useForm();
@@ -11,59 +14,64 @@ export default function Home() {
     try {
       await signIn(data);
     } catch (err) {
-      setError('Invalid credentials');
+      setError('Usuário ou senha inválidos');
     }
   }
 
   return (
-    <div className="bg-blue-600 h-screen flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-gray-200 mb-10">Login</h1>
-      <p className=" text-gray-200 ">Email: johnDoe@gmail.com</p>
-      <p className=" text-gray-200 mb-10">Senha: 123</p>
-      <form
-        onSubmit={handleSubmit(handleSignIn)}
-        className="bg-gray-200 p-10 rounded-lg flex flex-col gap-3 shadow-md shadow-black/40"
-      >
-        <div>
-          <label
-            className="block text-sm font-medium text-gray-700"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            autoComplete="email"
-            required
-            {...register('email')}
-            className="py-2 px-4 border shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-400 rounded-md"
-            type="email"
-            id="email"
-          />
-        </div>
-        <div>
-          <label
-            className="block text-sm font-medium text-gray-700"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            required
-            autoComplete="current-password"
-            {...register('password')}
-            className="py-2 px-4 border shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-400 rounded-md"
-            type="password"
-            id="password"
-          />
-        </div>
-        {error && <p className="text-red-500">{error}</p>}
-        <button
-          className="bg-blue-600 text-gray-200 font-bold py-2 px-4 rounded hover:bg-blue-500 hover:text-white"
-          type="submit"
+    <div className="flex h-screen w-screen justify-center items-center">
+      <div className="w-1/2 flex justify-center flex-col px-20 h-full bg-blue-600   bg-gradient-to-b from-blue-500 to-blue-700  shadow-inner shadow-black/40 z-50">
+        <h1 className="text-center text-4xl font-bold text-gray-200 mb-4  ">
+          Sign in{' '}
+          <span>
+            <AiFillLock className="text-gray-200 inline" />
+          </span>
+        </h1>
+        <form
+          className="flex text-xl flex-col gap-5 bg-gray-200 rounded-md p-10 shadow shadow-black/30"
+          onSubmit={handleSubmit(handleSignIn)}
         >
-          Login
-        </button>
-      </form>
+          <div className="flex flex-col">
+            <label className="text-gray-500 text-xl" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="border text-base border-gray-300 rounded-md p-2 focus:outline-blue-500/40 transition-all duration-500 focus:ring-blue-500/40 focus:border-blue-500/40"
+              required
+              placeholder="johnDoe@gmail.com"
+              type="email"
+              id="email"
+              {...register('email')}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-gray-500 text-xl " htmlFor="password">
+              Senha
+            </label>
+            <input
+              className="border text-base border-gray-300 rounded-md p-2 focus:outline-blue-500/40 transition-all duration-500 focus:ring-blue-500/40 focus:border-blue-500/40"
+              required
+              placeholder="123"
+              type="password"
+              id="password"
+              {...register('password')}
+            />
+          </div>
+          {error && (
+            <span className="text-red-500 text-sm animate-bounce">{error}</span>
+          )}
+          <button className="bg-blue-600 bg-gradient-to-r from-blue-500 to-blue-600 text-gray-200 rounded-md p-2 hover:from-blue-400 hover:to-blue-500 hover:text-white transition-all duration-700">
+            Entrar
+          </button>
+        </form>
+      </div>
+      <div className="w-1/2 flex items-center justify-center bg-gray-200">
+        <Image
+          className="w-9/12"
+          alt="Ilustração"
+          src={login_illustration}
+        ></Image>
+      </div>
     </div>
   );
 }
