@@ -2,7 +2,6 @@ import { AuthContext } from '../context/AuthContext';
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { parseCookies } from 'nookies';
-import API from '../services/API';
 import Navbar from '../components/navbar';
 
 interface UserList {
@@ -12,11 +11,7 @@ interface UserList {
 }
 
 const dashboard = ({ users }: any) => {
-  return (
-    <div>
-      <Navbar />
-    </div>
-  );
+  return <Navbar />;
 };
 
 export default dashboard;

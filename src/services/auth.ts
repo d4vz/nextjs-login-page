@@ -1,8 +1,8 @@
 import API from './API';
 import { v4 as uuid } from 'uuid';
-import { ApiError } from 'next/dist/server/api-utils';
 
 interface signInRequestData {
+  name?: string;
   email: string;
   password: string;
 }

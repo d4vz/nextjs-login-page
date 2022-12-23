@@ -6,11 +6,12 @@ export interface iContext {
 }
 
 export interface iUser {
-  name: string;
   email: string;
+  password?: string;
 }
 
 export interface signInData {
+  name: string;
   email: string;
   password: string;
 }

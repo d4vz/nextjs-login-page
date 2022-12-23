@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <div className="flex h-screen w-screen justify-center items-center">
-      <div className="w-1/2 flex justify-center flex-col px-20 h-full bg-blue-600   bg-gradient-to-b from-blue-500 to-blue-700  shadow-inner shadow-black/40 z-50">
+      <div className="md:w-1/2 flex justify-center flex-col md:px-20 h-full bg-blue-600   bg-gradient-to-b from-blue-500 to-blue-700 w-screen px-10 shadow-inner shadow-black/40 z-50">
         <h1 className="text-center text-4xl font-bold text-gray-200 mb-4  ">
           Sign in{' '}
           <span>
@@ -65,7 +65,7 @@ export default function Home() {
           </button>
         </form>
       </div>
-      <div className="w-1/2 flex items-center justify-center bg-gray-200">
+      <div className="md:visible hidden w-1/2 md:flex items-center justify-center bg-gray-200">
         <Image
           className="w-9/12"
           alt="Ilustração"

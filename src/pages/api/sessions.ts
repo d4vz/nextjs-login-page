@@ -1,47 +1,33 @@
-import express from 'express';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { v4 as uuid } from 'uuid';
 
-const UsersList = [
+let UsersList = [
   {
+    token: uuid(),
     User: {
-      name: 'John Doe',
+      name: 'john doe',
       email: 'johnDoe@gmail.com',
     },
     password: '123',
   },
-
-  {
-    User: {
-      name: 'John Doe 2',
-      email: 'johnDoe2@gmail.com',
-    },
-    password: '1234',
-  },
 ];
 
-const App = express();
-
-App.get('/api/sessions', (req, res) => {
-  return res.status(200).json(UsersList.map((user) => user.User));
-});
-
-App.post('/api/sessions', (req, res) => {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email, password } = req.body;
 
-  const isAuth = UsersList.find((user) => {
-    return user.User.email === email && user.password === password;
-  });
+  const user = UsersList.find(
+    (user) => user.User.email === email && user.password === password,
+  );
 
-  if (isAuth) {
-    return res.status(200).json({
-      token: uuid(),
-      user: isAuth.User,
-    });
-  } else {
-    return res.status(401).json({
-      message: 'Email or password incorrect',
-    });
+  if (!user) {
+    return res.status(400).json({ message: 'User not found' });
   }
-});
 
-export default App;
+  return res.status(200).json({
+    token: user.token,
+    user: {
+      name: user.User.name,
+      email: user.User.email,
+    },
+  });
+}
