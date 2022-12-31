@@ -10,4 +10,4 @@ https://nextjs-login.netlify.app
 
 ## Para rodar:
 
-    npm start
+    npm run dev
