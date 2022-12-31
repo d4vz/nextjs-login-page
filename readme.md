@@ -4,6 +4,9 @@ Este é um projeito feito usando NextJS, com validação JWT via API e estilizad
 
 https://nextjs-login.netlify.app
 
+### Login: JhonDoe@Gmail.com
+### Senha: 123
+
 ## Para instalar:
 
     npm install
@@ -11,3 +14,5 @@ https://nextjs-login.netlify.app
 ## Para rodar:
 
     npm run dev
+
+### Senha: 
